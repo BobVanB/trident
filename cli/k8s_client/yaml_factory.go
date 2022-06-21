@@ -439,6 +439,9 @@ spec:
           initialDelaySeconds: 120
           periodSeconds: 120
           timeoutSeconds: 90
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         env:
         - name: KUBE_NODE_NAME
           valueFrom:
@@ -471,6 +474,9 @@ spec:
         resources:
           limits:
             memory: 1Gi
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         volumeMounts:
         - name: asup-dir
           mountPath: /asup
@@ -486,6 +492,9 @@ spec:
         env:
         - name: ADDRESS
           value: /var/lib/csi/sockets/pluginproxy/csi.sock
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         volumeMounts:
         - name: socket-dir
           mountPath: /var/lib/csi/sockets/pluginproxy/
@@ -499,6 +508,9 @@ spec:
         env:
         - name: ADDRESS
           value: /var/lib/csi/sockets/pluginproxy/csi.sock
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         volumeMounts:
         - name: socket-dir
           mountPath: /var/lib/csi/sockets/pluginproxy/
@@ -511,6 +523,9 @@ spec:
         env:
         - name: ADDRESS
           value: /var/lib/csi/sockets/pluginproxy/csi.sock
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         volumeMounts:
         - name: socket-dir
           mountPath: /var/lib/csi/sockets/pluginproxy/
@@ -523,6 +538,9 @@ spec:
         env:
         - name: ADDRESS
           value: /var/lib/csi/sockets/pluginproxy/csi.sock
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         volumeMounts:
         - name: socket-dir
           mountPath: /var/lib/csi/sockets/pluginproxy/
@@ -610,6 +628,9 @@ spec:
           value: unix://plugin/csi.sock
         - name: TRIDENT_SERVER
           value: "{IP_LOCALHOST}:8000"
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         volumeMounts:
         - name: socket-dir
           mountPath: /plugin
@@ -632,6 +653,9 @@ spec:
         resources:
           limits:
             memory: 1Gi
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         volumeMounts:
         - name: asup-dir
           mountPath: /asup
@@ -647,6 +671,9 @@ spec:
         env:
         - name: ADDRESS
           value: /var/lib/csi/sockets/pluginproxy/csi.sock
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         volumeMounts:
         - name: socket-dir
           mountPath: /var/lib/csi/sockets/pluginproxy/
@@ -660,6 +687,9 @@ spec:
         env:
         - name: ADDRESS
           value: /var/lib/csi/sockets/pluginproxy/csi.sock
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         volumeMounts:
         - name: socket-dir
           mountPath: /var/lib/csi/sockets/pluginproxy/
@@ -672,6 +702,9 @@ spec:
         env:
         - name: ADDRESS
           value: /var/lib/csi/sockets/pluginproxy/csi.sock
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         volumeMounts:
         - name: socket-dir
           mountPath: /var/lib/csi/sockets/pluginproxy/
@@ -684,6 +717,9 @@ spec:
         env:
         - name: ADDRESS
           value: /var/lib/csi/sockets/pluginproxy/csi.sock
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         volumeMounts:
         - name: socket-dir
           mountPath: /var/lib/csi/sockets/pluginproxy/
@@ -796,6 +832,7 @@ spec:
           privileged: true
           capabilities:
             add: ["SYS_ADMIN"]
+            drop: ["ALL"]
           allowPrivilegeEscalation: true
         image: {TRIDENT_IMAGE}
         command:
@@ -875,6 +912,9 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         volumeMounts:
         - name: plugin-dir
           mountPath: /plugin
@@ -956,6 +996,7 @@ spec:
           privileged: true
           capabilities:
             add: ["SYS_ADMIN"]
+            drop: ["ALL"]
           allowPrivilegeEscalation: true
         image: {TRIDENT_IMAGE}
         command:
@@ -1043,6 +1084,9 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        securityContext:
+          capabilities:
+            drop: ["ALL"]
         volumeMounts:
         - name: plugin-dir
           mountPath: /plugin
@@ -1127,6 +1171,9 @@ spec:
     imagePullPolicy: IfNotPresent
     image: {TRIDENT_IMAGE}
     command: ["tridentctl"]
+    securityContext:
+      capabilities:
+        drop: ["ALL"]
     args: ["pause"]
   {IMAGE_PULL_SECRETS}
   nodeSelector:

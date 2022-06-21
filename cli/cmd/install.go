@@ -1502,6 +1502,17 @@ func validateTridentPodSecurityPolicy() error {
 		return fmt.Errorf("trident's pod security policy must allow SYS_ADMIN capability")
 	}
 
+	found = false
+	for _, droppedCap := range spec.RequiredDropCapabilities {
+		if droppedCap == "ALL" {
+			found = true
+			break
+		}
+	}
+	if !found {
+		return fmt.Errorf("trident's pod security policy must drop ALL capability")
+	}
+
 	return nil
 }
 
